@@ -31,6 +31,19 @@ button {
   margin-top: 30px;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-inputs {
+  background-color: #f5f5f5;
+  opacity: 85%;
+  width: 55%;
+  border-radius: 1.5em;
+}
+
 .inputone {
   display: flex;
   flex-direction: column;
