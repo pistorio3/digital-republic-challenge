@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import Wall from '../components/Wall';
 
-export default class home extends Component {
+class home extends Component {
   render() {
     return (
       <div>
@@ -27,7 +28,9 @@ export default class home extends Component {
               <Wall numberWall={ 4 } />
             </div>
 
-            <button type="button">Calcular</button>
+            <Link to="/result">
+              <button type="button">Calcular</button>
+            </Link>
 
             <h3>Observação: todas as medidas devem ser fornecidas em metros</h3>
           </div>
@@ -36,3 +39,5 @@ export default class home extends Component {
     );
   }
 }
+
+export default home;
