@@ -1,33 +1,34 @@
-import '../src/assets/css/App.css';
-import Wall from '../src/components/Wall'
+import React from 'react';
+import './assets/css/App.css';
+import Wall from './components/Wall';
 
 function App() {
   return (
     <div className="App">
       <h1>Digital Republic Challenge</h1>
       <h2>Paint Calculator</h2>
-     
-     <div className="container-inputs">
+
+      <div className="container-inputs">
         <div className="input-measure">
-          <Wall numberWall={1}></Wall>
+          <Wall numberWall={ 1 } />
         </div>
 
         <div className="input-measure">
-          <Wall numberWall={2}></Wall>
+          <Wall numberWall={ 2 } />
         </div>
 
         <div className="input-measure">
-          <Wall numberWall={3}></Wall>
+          <Wall numberWall={ 3 } />
         </div>
 
         <div className="input-measure">
-          <Wall numberWall={4}></Wall>
+          <Wall numberWall={ 4 } />
         </div>
 
-        <button>Calcular</button>
+        <button type="button">Calcular</button>
 
         <h3>Observação: todas as medidas devem ser fornecidas em metros</h3>
-     </div>
+      </div>
     </div>
   );
 }
