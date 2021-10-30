@@ -25,12 +25,6 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   margin: 0;
 }
 
-button {
-  width: 10%;
-  height: 30px;
-  margin-top: 30px;
-}
-
 .App {
   display: flex;
   flex-direction: column;
@@ -40,13 +34,25 @@ button {
 .container-inputs {
   background-color: #f5f5f5;
   opacity: 85%;
-  width: 55%;
+  width: 65%;
   border-radius: 1.5em;
 }
 
 .inputone {
   display: flex;
   flex-direction: column;
+}
+
+.input-measure {
+  background-color: white;
+  padding: 10px 20px 10px;
+  margin: 15px;
+  min-height: 50px;
+  border-radius: 1.2em;
+}
+
+.input-measure h5 {
+  margin-top: 0;
 }
 
 .input-measure label {
@@ -59,4 +65,19 @@ button {
 
 .input-door-window {
   width: 5%;
+}
+
+.checkbox-group {
+  margin-top: 20px;
+}
+
+.calc-button {
+  width: 10%;
+  height: 30px;
+  margin-top: 20px;
+}
+
+.error-message {
+  font-size: x-small;
+  color: red;
 }
