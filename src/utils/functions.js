@@ -63,6 +63,38 @@ validateHeightWithDoor = (values) => {
   return true;
 };
 
+widthErrorMessage = (widthsValid) => {
+  if (!widthsValid) {
+    const paragraph = document.getElementById('errorwidth');
+    paragraph.innerHTML = 'A largura da parede deve ter entre 1m - 15m';
+  } else {
+    const paragraph = document.getElementById('errorwidth');
+    paragraph.innerHTML = '';
+  }
+};
+
+heightErrorMessage = (heightsValid) => {
+  if (!heightsValid) {
+    const paragraph = document.getElementById('errorheight');
+    const message = 'Altura da parede sem porta deve ter entre 1m - 15m';
+    paragraph.innerHTML = message;
+  } else {
+    const paragraph = document.getElementById('errorheight');
+    paragraph.innerHTML = '';
+  }
+};
+
+heightDoorErrorMessage = (heightsWithDoorValid) => {
+  if (!heightsWithDoorValid) {
+    const paragraph = document.getElementById('errorheightdoor');
+    const message = 'Paredes com porta devem ter altura mínima de 2.20m ';
+    paragraph.innerHTML = message;
+  } else {
+    const paragraph = document.getElementById('errorheightdoor');
+    paragraph.innerHTML = '';
+  }
+};
+
 // validateArea = (values) => {
 //   const wallsWithDoorOrWindow = values.filter((wall) => wall.doors > 0 || );
 
@@ -73,4 +105,7 @@ module.exports = {
   validateWidth,
   validateHeight,
   validateHeightWithDoor,
+  widthErrorMessage,
+  heightErrorMessage,
+  heightDoorErrorMessage,
 };
