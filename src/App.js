@@ -5,21 +5,25 @@ import Home from './pages/Home';
 import Result from './pages/Result';
 import NotFound from './pages/NotFound';
 
+import ResultProvider from './providers/ResultProvider';
+
 import './assets/css/App.css';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route
-          exact
-          path="/"
-          component={ Home }
-        />
-        <Route
-          path="/result"
-          component={ Result }
-        />
+        <ResultProvider>
+          <Route
+            exact
+            path="/"
+            component={ Home }
+          />
+          <Route
+            path="/result"
+            component={ Result }
+          />
+        </ResultProvider>
         <Route
           path=""
           component={ NotFound }
