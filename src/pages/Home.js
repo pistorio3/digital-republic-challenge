@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Wall from '../components/Wall';
+
+import ResultContext from '../providers/ResultContext';
 
 import {
   getInputValues,
   validateWidth,
   validateHeight,
   validateHeightWithDoor,
+  validateArea,
+  wallsArea,
+  calculateLitersOfInk,
+  calculateCans,
+} from '../utils/functions';
+
+import {
   widthErrorMessage,
   heightErrorMessage,
   heightDoorErrorMessage,
-} from '../utils/functions';
+  emptyInputsErroMessage,
+  noDoorErrorMessage,
+  areaErrorMessage,
+} from '../utils/errorMessages';
 
-class home extends Component {
+class Home extends Component {
   validateData = () => {
+    let validMeasures = false;
     const NUMBER_WALLS = 4;
-    const values = getInputValues(NUMBER_WALLS);
+    const checks = []; const quantityValues = []; const doors = [];
 
+    const values = getInputValues(NUMBER_WALLS);
     const widthsValid = validateWidth(values);
     const heightsValid = validateHeight(values);
     const heightsWithDoorValid = validateHeightWithDoor(values);
@@ -25,6 +39,49 @@ class home extends Component {
     widthErrorMessage(widthsValid);
     heightErrorMessage(heightsValid);
     heightDoorErrorMessage(heightsWithDoorValid);
+
+    for (let index = 0; index < NUMBER_WALLS; index += 1) {
+      checks.push(document.getElementById(`check${index + 1}`).checked);
+      doors.push(document.getElementById(`doors${index + 1}`).value);
+      quantityValues.push(document.getElementById(`doors${index + 1}`).value);
+      quantityValues.push(document.getElementById(`windows${index + 1}`).value);
+    }
+
+    const isChecked = checks.some((status) => status === true);
+    const defaultQuantityValues = quantityValues.every((value) => value === '');
+    const noDoors = doors.every((value) => value === '');
+
+    noDoorErrorMessage(noDoors);
+
+    if (isChecked && defaultQuantityValues) {
+      emptyInputsErroMessage(isChecked, defaultQuantityValues);
+    } else {
+      emptyInputsErroMessage(isChecked, defaultQuantityValues);
+    }
+
+    if (widthsValid && heightsValid && heightsWithDoorValid && !noDoors) {
+      const areaValid = validateArea(values);
+      areaErrorMessage(areaValid);
+      validMeasures = areaValid;
+    }
+
+    if (validMeasures) {
+      const paintArea = wallsArea();
+      const liters = calculateLitersOfInk(paintArea);
+      const cans = calculateCans(liters);
+
+      this.sendResult(cans, paintArea);
+    }
+  }
+
+  async sendResult(cans, paintArea) {
+    const { setCans, setPaintArea } = this.context;
+    const { history } = this.props;
+
+    await setCans(cans);
+    await setPaintArea(paintArea);
+
+    history.push({ pathname: '/result' });
   }
 
   render() {
@@ -35,7 +92,6 @@ class home extends Component {
       <div>
         <div className="App">
           <h1>Paint Calculator</h1>
-
           <div className="container-inputs">
             {wallsOrder.map((index) => (
               <div key={ `div${index}` } className="input-measure">
@@ -46,6 +102,9 @@ class home extends Component {
             <div><p id="errorwidth" className="error-message" /></div>
             <div><p id="errorheight" className="error-message" /></div>
             <div><p id="errorheightdoor" className="error-message" /></div>
+            <div><p id="erroremptyinput" className="error-message" /></div>
+            <div><p id="errorinvalidarea" className="error-message" /></div>
+            <div><p id="errornodoors" className="error-message" /></div>
 
             {/* <Link to="/result"> */}
             <button
@@ -68,4 +127,12 @@ class home extends Component {
   }
 }
 
-export default home;
+Home.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+Home.contextType = ResultContext;
+
+export default Home;
