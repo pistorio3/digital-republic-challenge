@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Wall from '../components/Wall';
 
-import ResultContext from '../providers/ResultContext';
+import ResultContext from '../context/ResultContext';
 
 import {
   getInputValues,
@@ -70,16 +70,17 @@ class Home extends Component {
       const liters = calculateLitersOfInk(paintArea);
       const cans = calculateCans(liters);
 
-      this.sendResult(cans, paintArea);
+      this.sendResult(cans, paintArea, liters);
     }
   }
 
-  async sendResult(cans, paintArea) {
-    const { setCans, setPaintArea } = this.context;
+  async sendResult(cans, paintArea, liters) {
+    const { setCans, setPaintArea, setLitersOfInk } = this.context;
     const { history } = this.props;
 
     await setCans(cans);
     await setPaintArea(paintArea);
+    await setLitersOfInk(liters);
 
     history.push({ pathname: '/result' });
   }
@@ -106,15 +107,13 @@ class Home extends Component {
             <div><p id="errorinvalidarea" className="error-message" /></div>
             <div><p id="errornodoors" className="error-message" /></div>
 
-            {/* <Link to="/result"> */}
             <button
               type="button"
               className="calc-button"
               onClick={ this.validateData }
             >
-              Calcular
+              CALCULAR
             </button>
-            {/* </Link> */}
 
             <h3>
               Observação: todas as medidas devem ser fornecidas

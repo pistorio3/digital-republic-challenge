@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ResultContext from './ResultContext';
+import ResultContext from '../context/ResultContext';
 
 class ResultProvider extends Component {
   constructor(props) {
@@ -8,10 +8,12 @@ class ResultProvider extends Component {
 
     this.setCans = this.setCans.bind(this);
     this.setPaintArea = this.setPaintArea.bind(this);
+    this.setLitersOfInk = this.setLitersOfInk.bind(this);
 
     this.state = {
       cans: {},
       paintArea: 0,
+      litersOfInk: 0,
     };
   }
 
@@ -27,11 +29,18 @@ class ResultProvider extends Component {
     });
   }
 
+  setLitersOfInk(litersOfInk) {
+    this.setState({
+      litersOfInk,
+    });
+  }
+
   render() {
     const contextValue = {
       ...this.state,
       setCans: this.setCans,
       setPaintArea: this.setPaintArea,
+      setLitersOfInk: this.setLitersOfInk,
     };
 
     const { children } = this.props;
