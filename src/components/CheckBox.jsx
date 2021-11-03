@@ -13,6 +13,8 @@ class CheckBox extends Component {
     } else {
       document.getElementById(`doors${numberWall}`).disabled = true;
       document.getElementById(`windows${numberWall}`).disabled = true;
+      document.getElementById(`doors${numberWall}`).value = '';
+      document.getElementById(`windows${numberWall}`).value = '';
     }
   }
 
