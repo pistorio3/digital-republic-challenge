@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Result from './pages/Result';
 import NotFound from './pages/NotFound';
 
-import ResultProvider from './providers/ResultProvider';
+import ResultProvider from './provider/ResultProvider';
 
 import './assets/css/App.css';
 

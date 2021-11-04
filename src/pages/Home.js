@@ -16,6 +16,15 @@ import {
   calculateCans,
 } from '../utils/functions';
 
+import {
+  widthErrorMessage,
+  heightErrorMessage,
+  heightDoorErrorMessage,
+  emptyInputsErroMessage,
+  noDoorErrorMessage,
+  areaErrorMessage,
+} from '../utils/errorMessages';
+
 class Home extends Component {
   validateData = () => {
     let validMeasures = false;
