@@ -6,9 +6,10 @@ class InputQuantity extends Component {
     const { text, numberWall, type } = this.props;
 
     return (
-      <label htmlFor={ `doors${numberWall}` }>
+      <label htmlFor={ `${type}${numberWall}` }>
         {text}
         <input
+          data-testid={ `${type}-quantity-input${numberWall}` }
           id={ `${type}${numberWall}` }
           className="input-door-window"
           type="number"

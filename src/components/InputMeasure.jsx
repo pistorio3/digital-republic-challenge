@@ -6,9 +6,10 @@ class InputMeasure extends Component {
     const { text, numberWall, type } = this.props;
 
     return (
-      <label htmlFor={ `wall-width${numberWall}` }>
+      <label htmlFor={ `wall-${type}${numberWall}` }>
         {text}
         <input
+          data-testid={ `measure-${type}${numberWall}` }
           id={ `wall-${type}${numberWall}` }
           className="input-wall"
           type="number"

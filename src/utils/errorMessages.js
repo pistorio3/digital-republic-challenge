@@ -1,4 +1,4 @@
-widthErrorMessage = (widthsValid) => {
+function widthErrorMessage(widthsValid) {
   if (!widthsValid) {
     const paragraph = document.getElementById('errorwidth');
     paragraph.innerHTML = 'Paredes sem porta devem ter largura entre 1m - 15m';
@@ -6,9 +6,9 @@ widthErrorMessage = (widthsValid) => {
     const paragraph = document.getElementById('errorwidth');
     paragraph.innerHTML = '';
   }
-};
+}
 
-heightErrorMessage = (heightsValid) => {
+function heightErrorMessage(heightsValid) {
   if (!heightsValid) {
     const paragraph = document.getElementById('errorheight');
     const message = 'Paredes sem porta devem ter altura mínima entre 1m - 15m';
@@ -17,9 +17,9 @@ heightErrorMessage = (heightsValid) => {
     const paragraph = document.getElementById('errorheight');
     paragraph.innerHTML = '';
   }
-};
+}
 
-heightDoorErrorMessage = (heightsWithDoorValid) => {
+function heightDoorErrorMessage(heightsWithDoorValid) {
   if (!heightsWithDoorValid) {
     const paragraph = document.getElementById('errorheightdoor');
     const message = 'Paredes com porta devem ter altura mínima de 2.20m';
@@ -28,9 +28,9 @@ heightDoorErrorMessage = (heightsWithDoorValid) => {
     const paragraph = document.getElementById('errorheightdoor');
     paragraph.innerHTML = '';
   }
-};
+}
 
-emptyInputsErroMessage = (check, defaultValues) => {
+function emptyInputsErroMessage(check, defaultValues) {
   if (check && defaultValues) {
     const paragraph = document.getElementById('erroremptyinput');
     const message = 'Insira a quantidade de portas ou janelas';
@@ -39,9 +39,9 @@ emptyInputsErroMessage = (check, defaultValues) => {
     const paragraph = document.getElementById('erroremptyinput');
     paragraph.innerHTML = '';
   }
-};
+}
 
-areaErrorMessage = (areasValid) => {
+function areaErrorMessage(areasValid) {
   if (!areasValid) {
     const paragraph = document.getElementById('errorinvalidarea');
     const message1 = 'A área total das portas e janelas';
@@ -51,9 +51,9 @@ areaErrorMessage = (areasValid) => {
     const paragraph = document.getElementById('errorinvalidarea');
     paragraph.innerHTML = '';
   }
-};
+}
 
-noDoorErrorMessage = (noDoors) => {
+function noDoorErrorMessage(noDoors) {
   if (noDoors) {
     const paragraph = document.getElementById('errornodoors');
     const message = 'Pelo menos uma parede precisa ter porta';
@@ -62,7 +62,7 @@ noDoorErrorMessage = (noDoors) => {
     const paragraph = document.getElementById('errornodoors');
     paragraph.innerHTML = '';
   }
-};
+}
 
 module.exports = {
   widthErrorMessage,

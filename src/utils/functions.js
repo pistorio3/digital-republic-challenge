@@ -2,62 +2,62 @@
 
 let walls = [];
 
-filterWallsWithDoorOrWindow = (values) => { // Função auxiliar (Validate Area)
+function filterWallsWithDoorOrWindow(values) { // Função auxiliar (Validate Area)
   const wallsWithDoorOrWindow = values.filter(
     (wall) => wall.doors > 0 || wall.windows > 0,
   );
 
   return wallsWithDoorOrWindow;
-};
+}
 
-filterHaveDoor = (wallsWithDoorOrWindow) => { // Função auxiliar (Validate Area)
+function filterHaveDoor(wallsWithDoorOrWindow) { // Função auxiliar (Validate Area)
   const haveDoor = wallsWithDoorOrWindow.filter(
     (wall) => wall.doors > 0 && wall.windows === 0,
   );
 
   return haveDoor;
-};
+}
 
-filterHaveWindow = (wallsWithDoorOrWindow) => { // Função auxiliar (Validate Area)
+function filterHaveWindow(wallsWithDoorOrWindow) { // Função auxiliar (Validate Area)
   const haveWindow = wallsWithDoorOrWindow.filter(
     (wall) => wall.windows > 0 && wall.doors === 0,
   );
 
   return haveWindow;
-};
+}
 
-filterHaveDoorAndWindow = (wallsWithDoorOrWindow) => { // Função auxiliar (Validate Area)
+function filterHaveDoorAndWindow(wallsWithDoorOrWindow) { // Função auxiliar (Validate Area)
   const haveDorrAndWindow = wallsWithDoorOrWindow.filter(
     (wall) => wall.doors > 0 && wall.windows > 0,
   );
 
   return haveDorrAndWindow;
-};
+}
 
-filterNoHaveDoorAndWindow = (values) => { // Função auxiliar (Validate Area)
+function filterNoHaveDoorAndWindow(values) { // Função auxiliar (Validate Area)
   const noHaveDoorAndWindow = values.filter(
     (wall) => wall.doors === 0 && wall.windows === 0,
   );
 
   return noHaveDoorAndWindow;
-};
+}
 
-calculatePercentage = (area) => {
+function calculatePercentage(area) {
   const fiftyPercent = parseFloat((area.wall / 2).toFixed(2));
 
   if (area.others && area.others > fiftyPercent) { return false; }
 
   return true;
-};
+}
 
-calculateWallArea = (wall) => {
+function calculateWallArea(wall) {
   const wallBase = wall.width; const wallHeight = wall.height;
   const wallArea = parseFloat((wallBase * wallHeight).toFixed(2));
 
   return wallArea;
-};
+}
 
-calculateDoorOrWindowArea = (number, wall, base, height) => {
+function calculateDoorOrWindowArea(number, wall, base, height) {
   const area = parseFloat((number * (base * height)).toFixed(2));
   const wallArea = calculateWallArea(wall);
 
@@ -73,9 +73,9 @@ calculateDoorOrWindowArea = (number, wall, base, height) => {
   areas.valid = percentageValid;
 
   return percentageValid;
-};
+}
 
-calculateDoorAndWindowArea = (wall, measures) => {
+function calculateDoorAndWindowArea(wall, measures) {
   const { doorBase, doorHeight, windowBase, windowHeight } = measures;
 
   const doorsNumber = wall.doors;
@@ -102,19 +102,19 @@ calculateDoorAndWindowArea = (wall, measures) => {
   areas.valid = percentageValid;
 
   return percentageValid;
-};
+}
 
-calculateNoDoorOrWindowArea = (wall) => {
+function calculateNoDoorOrWindowArea(wall) {
   const wallArea = calculateWallArea(wall);
   const areas = { wall: wallArea, others: 0, valid: true, paintArea: wallArea };
   walls.push(areas);
-};
+}
 
 // -----------------------------------------------------------------------------
 // Funções exportadas
 // -----------------------------------------------------------------------------
 
-validateArea = (values) => {
+function validateArea(values) {
   const areaValid = []; walls = [];
   const measures = {
     doorBase: 0.80, doorHeight: 1.90, windowBase: 2.00, windowHeight: 1.20,
@@ -160,9 +160,9 @@ validateArea = (values) => {
   const validAreas = areaValid.every((result) => result === true);
 
   return validAreas;
-};
+}
 
-wallsArea = () => {
+function wallsArea() {
   let totalArea = 0;
 
   for (let index = 0; index < walls.length; index += 1) {
@@ -170,16 +170,16 @@ wallsArea = () => {
   }
 
   return parseFloat((totalArea).toFixed(2));
-};
+}
 
-calculateLitersOfInk = (totalPaintArea) => {
+function calculateLitersOfInk(totalPaintArea) {
   const metersPerLiter = 5;
   const liters = parseFloat((totalPaintArea / metersPerLiter).toFixed(2));
 
   return liters;
-};
+}
 
-calculateCans = (litersOfInk) => {
+function calculateCans(litersOfInk) {
   const can05 = 0.5; const can25 = 2.5; const can36 = 3.6; const can180 = 18;
   const cans = { can180: 0, can36: 0, can25: 0, can05: 0 };
   let liters = litersOfInk; const multiple = 5;
@@ -206,9 +206,9 @@ calculateCans = (litersOfInk) => {
   }
 
   return cans;
-};
+}
 
-getInputValues = (elements) => {
+function getInputValues(elements) {
   const values = [];
 
   for (let index = 0; index < elements; index += 1) {
@@ -227,9 +227,9 @@ getInputValues = (elements) => {
   }
 
   return values;
-};
+}
 
-validateWidth = (values) => {
+function validateWidth(values) {
   const MIN_WIDTH_WALL = 1;
   const MAX_WIDTH_WALL = 15;
 
@@ -239,9 +239,9 @@ validateWidth = (values) => {
   const widthValid = values.every(isValidWidth);
 
   return widthValid;
-};
+}
 
-validateHeight = (values) => {
+function validateHeight(values) {
   const MIN_HEIGHT_WITHOUT_DOOR = 1;
   const MAX_HEIGHT_WITHOUT_DOOR = 15;
 
@@ -253,9 +253,9 @@ validateHeight = (values) => {
   );
 
   return validHeightWithoutDoor;
-};
+}
 
-validateHeightWithDoor = (values) => {
+function validateHeightWithDoor(values) {
   const MIN_HEIGHT_WITH_DOOR = 2.20;
   const MAX_HEIGHT_WITHOUT_DOOR = 15;
 
@@ -267,7 +267,7 @@ validateHeightWithDoor = (values) => {
   );
 
   return validHeightWithDoor;
-};
+}
 
 module.exports = {
   getInputValues,
