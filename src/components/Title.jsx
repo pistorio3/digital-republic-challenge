@@ -7,7 +7,7 @@ class Title extends Component {
 
     return (
       <div>
-        <h5>
+        <h5 data-testid="title-section">
           Parede
           {' '}
           {numberWall}

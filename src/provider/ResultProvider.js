@@ -11,7 +11,12 @@ class ResultProvider extends Component {
     this.setLitersOfInk = this.setLitersOfInk.bind(this);
 
     this.state = {
-      cans: {},
+      cans: {
+        can05: 0,
+        can25: 0,
+        can36: 0,
+        can180: 0,
+      },
       paintArea: 0,
       litersOfInk: 0,
     };

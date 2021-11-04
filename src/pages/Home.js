@@ -72,7 +72,7 @@ class Home extends Component {
 
       this.sendResult(cans, paintArea, liters);
     }
-  }
+  };
 
   async sendResult(cans, paintArea, liters) {
     const { setCans, setPaintArea, setLitersOfInk } = this.context;
@@ -95,7 +95,11 @@ class Home extends Component {
           <h1>Paint Calculator</h1>
           <div className="container-inputs">
             {wallsOrder.map((index) => (
-              <div key={ `div${index}` } className="input-measure">
+              <div
+                key={ `div${index}` }
+                className="input-measure"
+                data-testid={ `input-measure${index}` }
+              >
                 <Wall numberWall={ index } />
               </div>
             ))}
@@ -126,12 +130,14 @@ class Home extends Component {
   }
 }
 
-Home.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+Home.contextType = ResultContext;
+
+Home.defaultProps = {
+  history: PropTypes.func,
 };
 
-Home.contextType = ResultContext;
+Home.propTypes = {
+  history: PropTypes.func,
+};
 
 export default Home;

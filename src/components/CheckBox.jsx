@@ -24,10 +24,11 @@ class CheckBox extends Component {
       <label htmlFor={ `check${numberWall}` }>
         Possui janelas ou portas?
         <input
-          type="checkbox"
+          data-testid={ `check-input${numberWall}` }
           id={ `check${numberWall}` }
           name={ `check${numberWall}` }
           onChange={ this.enableInputs }
+          type="checkbox"
         />
       </label>
     );
