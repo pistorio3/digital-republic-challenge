@@ -45,3 +45,15 @@ Para visualizar erros de lint ou da linguagem utilize o console.
 
 Executa a suite de testes unitários da aplicação. \
 Saiba mais em [executando testes](https://facebook.github.io/create-react-app/docs/running-tests).
+
+## Telas do projeto
+
+### Tela inicial
+<p align="center">  
+  <img src="src/assets/img/home.png" align="center">
+</p>
+
+### Tela de resultado
+<p align="center">  
+  <img src="src/assets/img/result.png" align="center">
+</p>
